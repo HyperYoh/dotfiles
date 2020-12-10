@@ -1,29 +1,56 @@
+""""""""""""""""""""""""""""""""""""""""""""""""""
+" Start!
+""""""""""""""""""""""""""""""""""""""""""""""""""
+"
 " ~/.vimrc
+"
+" Description:
+"   This is the .vimrc file
+"
+" Maintener:
+"   HyperYoh
+"
+" Complete Version:
+"   Complete Configuration
+"   Including All Plugins
+"   Are Other Place In Repo
+"
+" Acknowledgements:
+"   WIP
+"
+""""""""""""""""""""""""""""""""""""""""""""""""""
+" Plugins
+""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+"set rtp+=~/.vim/bundle/Vundle.vim
+"call vundle#begin()
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
 
 " let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
+"Plugin 'VundleVim/Vundle.vim'
 
 " https://github.com/tpope/vim-sensible
-Plugin 'tpope/vim-sensible'
+"Plugin 'tpope/vim-sensible'
 
 " https://github.com/takac/vim-hardtime
 " Bundle 'takac/vim-hardtime'
-Plugin 'takac/vim-hardtime'
+"Plugin 'takac/vim-hardtime'
 
 " All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
+"call vundle#end()            " required
+" filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
 
-runtime! plugin/sensible.vim
-runtime! hardtime.vim
+" runtime! plugin/sensible.vim
+" runtime! plugin/hardtime.vim
+" runtime! tabmerge.vim
+
+""""""""""""""""""""""""""""""""""""""""""""""""""
+" Git Config
+""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " per .git vim configs
 " just `git config vim.settings "expandtab sw=4 sts=4"` in a git repository
@@ -33,13 +60,11 @@ if strlen(git_settings)
 	exe "set" git_settings
 endif
 
+""""""""""""""""""""""""""""""""""""""""""""""""""
+" Parameters
+""""""""""""""""""""""""""""""""""""""""""""""""""
 
-"function! Formatonsave()
-"  let l:formatdiff = 1
-"  pyf ~/llvm/tools/clang/tools/clang-format/clang-format.py
-"endfunction
-"autocmd BufWritePre *.h,*.cc,*.cpp call Formatonsave()
-
+filetype plugin indent on    " required
 syntax on
 
 set encoding=utf-8 fileencodings=
@@ -65,19 +90,97 @@ set showcmd
 
 set mouse=a
 
+" Windows Only
+set noerrorbells visualbell t_vb=
+set guifont=Fixedsys:h12:cANSI:qDRAFT
+set clipboard=unnamed
 
+""""""""""""""""""""""""""""""""""""""""""""""""""
+" Maps
+""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" clipboard with Ctrl+c
 map <C-c> :w !xsel -i -b<CR><CR>
 
+" Clang-Format
 map <C-K> :pyf ~/afs/Tools/clang_format/clang-format.py<cr>
 imap <C-K> <c-o>:pyf ~/afs/Tools/clang_format/clang-format.py<cr>
 
+" toggle highlight search
 noremap <F7> :set hlsearch!<cr>:set hlsearch?<cr>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""
+" abbreviate
+""""""""""""""""""""""""""""""""""""""""""""""""""
 
 ia main int main(int argc, char *argv[])<cr>{}<Left>
 ia fori for (int i = 0; i < n; i++)<cr>{}<Left>
 
-colo pablo
+""""""""""""""""""""""""""""""""""""""""""""""""""
+" Colors
+""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Best Colorscheme
+colorscheme pablo
+" Special [char] in red
 highlight Special ctermfg=9 guifg=#ff0000
+
+""""""""""""""""""""""""""""""""""""""""""""""""""
+" Functions
+""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" MoveToTab ~ TabMerge
+function MoveToPrevTab()
+  "there is only one window
+  if tabpagenr('$') == 1 && winnr('$') == 1
+    return
+  endif
+  "preparing new window
+  let l:tab_nr = tabpagenr('$')
+  let l:cur_buf = bufnr('%')
+  if tabpagenr() != 1
+    close!
+    if l:tab_nr == tabpagenr('$')
+      tabprev
+    endif
+    vert topleft split
+  else
+    close!
+    exe "0tabnew"
+  endif
+  "opening current buffer in new window
+  exe "b".l:cur_buf
+endfunc
+
+function MoveToNextTab()
+  "there is only one window
+  if tabpagenr('$') == 1 && winnr('$') == 1
+    return
+  endif
+  "preparing new window
+  let l:tab_nr = tabpagenr('$')
+  let l:cur_buf = bufnr('%')
+  if tabpagenr() < tab_nr
+    close!
+    if l:tab_nr == tabpagenr('$')
+      tabnext
+    endif
+    vert topleft split
+  else
+    close!
+    tabnew
+  endif
+  "opening current buffer in new window
+  exe "b".l:cur_buf
+endfunc
+
+" execute "set <M-,>=\e,"
+" nnoremap <A-,> :call MoveToPrevTab()<CR>
+" execute "set <M-;>=\e;"
+" nnoremap <A-;> :call MoveToNextTab()<CR>
+
+nnoremap <C-P> :call MoveToPrevTab()<CR>
+nnoremap <C-N> :call MoveToNextTab()<CR>
 
 " DON't LEAVE THE FUCKING HOME RAW !
 fun! HJKL()
@@ -100,6 +203,14 @@ endf
 
 command! HJKL call HJKL()
 
-set clipboard=unnamed
 
-"map silent  <C-c> :w !xsel -i -b<CR>
+" A Save Function
+"function! Formatonsave()
+"  let l:formatdiff = 1
+"  pyf ~/llvm/tools/clang/tools/clang-format/clang-format.py
+"endfunction
+"autocmd BufWritePre *.h,*.cc,*.cpp call Formatonsave()
+
+""""""""""""""""""""""""""""""""""""""""""""""""""
+" Over.
+""""""""""""""""""""""""""""""""""""""""""""""""""
