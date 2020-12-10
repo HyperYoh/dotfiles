@@ -2,7 +2,7 @@ Plugins
 =======
 
 Put the plugin directory:
-* Unix
+* Unix:
     in ~/.vim/
-* PC (Windows)
+* PC (Windows):
     in $HOME/vimfiles/ or $VIM/vimfiles/
