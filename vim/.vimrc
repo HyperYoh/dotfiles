@@ -90,10 +90,13 @@ set showcmd
 
 set mouse=a
 
-" Windows Only
-set noerrorbells visualbell t_vb=
+" Windows (GVim) Only
+" set clipboard=unnamed
 set guifont=Fixedsys:h12:cANSI:qDRAFT
-set clipboard=unnamed
+set noerrorbells visualbell t_vb=
+if has('autocmd')
+  autocmd GUIEnter * set visualbell t_vb=
+endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " Maps
