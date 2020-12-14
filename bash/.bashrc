@@ -42,11 +42,12 @@ kiero(){ rm -rf "$1";}
 #echo "Okairi Nasai!"
 alias grep='grep --color -n'
 alias ls='ls --color=auto'
-alias ll='ls -la'
-alias la='ls -a'
-alias v='vim'
+alias ll='ls -la --color=auto'
+alias la='ls -a --color=auto'
+alias v='vim -O'
 alias l="i3lock -i afs/compiling.png"
 alias please="sudo"
+alias gpt="git push && git push --tag"
 
 alias rm='mv -f -t ~/afs/.zTrash/'
 alias rr='reset'
