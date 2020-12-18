@@ -69,6 +69,7 @@ syntax on
 
 set encoding=utf-8 fileencodings=
 
+" Real Tabs
 autocmd Filetype make setlocal noexpandtab
 set expandtab
 set tabstop=8
@@ -91,8 +92,8 @@ set showcmd
 set mouse=a
 
 " Windows (GVim) Only
-" set clipboard=unnamed
-set guifont=Fixedsys:h12:cANSI:qDRAFT
+set clipboard=unnamed
+set guifont=Lucida_Console:h12:cANSI:qDRAFT
 set noerrorbells visualbell t_vb=
 if has('autocmd')
   autocmd GUIEnter * set visualbell t_vb=
@@ -102,10 +103,16 @@ endif
 " Maps
 """"""""""""""""""""""""""""""""""""""""""""""""""
 
-" clipboard with Ctrl+c
+" Yank from cursor to end of line, to be consistent with C and D
+nnoremap Y y$
+
+" Subtitue character befor cursor, to be consistent with X
+nnoremap S hs
+
+" clipboard with Ctrl+c (Linux Only)
 map <C-c> :w !xsel -i -b<CR><CR>
 
-" Clang-Format
+" Clang-Format (May fix path)
 map <C-K> :pyf ~/afs/Tools/clang_format/clang-format.py<cr>
 imap <C-K> <c-o>:pyf ~/afs/Tools/clang_format/clang-format.py<cr>
 
@@ -116,7 +123,7 @@ noremap <F7> :set hlsearch!<cr>:set hlsearch?<cr>
 " abbreviate
 """"""""""""""""""""""""""""""""""""""""""""""""""
 
-ia main int main(int argc, char *argv[])<cr>{}<Left>
+ia mainx int main(int argc, char *argv[])<cr>{}<Left>
 ia fori for (int i = 0; i < n; i++)<cr>{}<Left>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
