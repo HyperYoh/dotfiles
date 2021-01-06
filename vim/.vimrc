@@ -88,6 +88,7 @@ set scrolloff=12
 set showmatch
 set showmode
 set showcmd
+set cursorline
 
 set mouse=a
 
