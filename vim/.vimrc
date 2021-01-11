@@ -108,7 +108,7 @@ endif
 nnoremap Y y$
 
 " Subtitue character befor cursor, to be consistent with X
-nnoremap S hs
+nnoremap S Xi
 
 " clipboard with Ctrl+c (Linux Only)
 map <C-c> :w !xsel -i -b<CR><CR>
