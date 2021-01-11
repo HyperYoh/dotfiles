@@ -65,10 +65,23 @@ alias 666='g++ -Wall -Werror -Wextra -pedantic -std=c++17 -fsanitize=address -g'
 # function
 mcd(){ mkdir -p "$1" && cd "$1";}
 
+term_size() # @https://github.com/epita/term_size
+{
+    if [ "$1" = "-h" ]; then
+        echo "Usage: $0 [size [font]]"
+        exit 0
+    fi
+
+    SIZE=${1:-16}
+    FONT=${2:-DejaVuSansMono}
+
+    printf '\33]50;%s%d\007' "xft:${FONT}:pixelsize=" "${SIZE}"
+}
+
 # Terminal
 set -o vi
 setxkbmap fr -option caps:escape
-term_size 12
+term_size
 #xrdb ~/.Xresources #normally automatic at PC launch but ...
 
 echo -e "\e[1;91mYour Focus Is Unparalleled!\e[0m"
