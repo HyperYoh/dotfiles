@@ -34,13 +34,13 @@ export LESS_TERMCAP_so=$'\E[38;5;246m'    # begin standout-mode - info box
 export LESS_TERMCAP_ue=$'\E[0m'           # end underline
 export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
 
+# PostgreSQL-specific environment variable
+# export PGDATA="$HOME/postgres_data"
+# export PGHOST="/tmp"
+
 # Prompt
 PS1='\[\e[1m\][\[\e[1;93m\]HyperYoh\[\e[1;91m\]@\[\e[1;33m\]Dobie\[\e[97m\]:\[\e[1;92m\]\W\[\e[39m\]]\$\[\e[0m\] '
-#PS1='[\u@\h \W]\$ ' Ancinet PS1
-
-# function
-mcd(){ mkdir -p "$1" && cd "$1";}
-
+#PS1='[\u@\h \W]\$ ' Ancient PS1
 
 # alias
 alias grep='grep --color -n'
@@ -62,6 +62,8 @@ alias H='H.py'
 alias 444='gcc -Wall -Werror -Wextra -pedantic -std=c99 -fsanitize=address -g'
 alias 666='g++ -Wall -Werror -Wextra -pedantic -std=c++17 -fsanitize=address -g'
 
+# function
+mcd(){ mkdir -p "$1" && cd "$1";}
 
 # Terminal
 set -o vi
