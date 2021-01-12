@@ -193,7 +193,7 @@ endfunc
 nnoremap <C-P> :call MoveToPrevTab()<CR>
 nnoremap <C-N> :call MoveToNextTab()<CR>
 
-" DON't LEAVE THE FUCKING HOME RAW !
+" DON'T LEAVE THE FUCKING HOME RAW!
 fun! HJKL()
     nnoremap <Left> :echo "No left for you!"<CR>
     vnoremap <Left> :<C-u>echo "No left for you!"<CR>
@@ -210,10 +210,29 @@ fun! HJKL()
     nnoremap <Down> :echo "No down for you!"<CR>
     vnoremap <Down> :<C-u>echo "No down for you!"<CR>
     inoremap <Down> <C-o>:echo "No down for you!"<CR>
-endf
+endif
+
+" Home Raw? Kezako?
+fun! LKJH()
+    nunmap <Left>
+    vunmap <Left>
+    iunmap <Left>
+
+    nunmap <Right>
+    vunmap <Right>
+    iunmap <Right>
+
+    nunmap <Up>
+    vunmap <Up>
+    iunmap <Up>
+
+    nunmap <Down>
+    vunmap <Down>
+    iunmap <Down>
+endif
 
 command! HJKL call HJKL()
-
+command! LKJH call LKJH()
 
 " A Save Function
 "function! Formatonsave()
