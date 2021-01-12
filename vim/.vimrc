@@ -210,7 +210,7 @@ fun! HJKL()
     nnoremap <Down> :echo "No down for you!"<CR>
     vnoremap <Down> :<C-u>echo "No down for you!"<CR>
     inoremap <Down> <C-o>:echo "No down for you!"<CR>
-endif
+endfunction
 
 " Home Raw? Kezako?
 fun! LKJH()
@@ -229,7 +229,7 @@ fun! LKJH()
     nunmap <Down>
     vunmap <Down>
     iunmap <Down>
-endif
+endfunction
 
 command! HJKL call HJKL()
 command! LKJH call LKJH()
