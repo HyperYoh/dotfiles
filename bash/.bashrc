@@ -20,6 +20,10 @@ if [ -d ~/afs/Tools/tools ] ; then
 	export PATH=~/afs/Tools/tools:$PATH
 fi
 
+if [ -d ~/Tools/tools ] ; then
+	export PATH=~/Tools/tools:$PATH
+fi
+
 export LANG=en_US.utf8
 export NNTPSERVER="news.epita.fr"
 export EDITOR=vim
@@ -37,6 +41,11 @@ export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
 # PostgreSQL-specific environment variable
 # export PGDATA="$HOME/postgres_data"
 # export PGHOST="/tmp"
+
+# Git Configuration
+# ssh-keygen -a 100 -t ed25519
+# git config --global user.name 'Julien LATULIPE'
+# git config --global user.email 'julien.latulipe@epita.fr'
 
 # Prompt
 PS1='\[\e[1m\][\[\e[1;93m\]HyperYoh\[\e[1;91m\]@\[\e[1;33m\]Dobie\[\e[97m\]:\[\e[1;92m\]\W\[\e[39m\]]\$\[\e[0m\] '
@@ -81,7 +90,7 @@ term_size() # @https://github.com/epita/term_size
 # Terminal
 set -o vi
 setxkbmap fr -option caps:escape
-term_size
+#term_size
 #xrdb ~/.Xresources #normally automatic at PC launch but ...
 
 echo -e "\e[1;91mYour Focus Is Unparalleled!\e[0m"
