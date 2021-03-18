@@ -28,6 +28,7 @@ export LANG=en_US.utf8
 export NNTPSERVER="news.epita.fr"
 export EDITOR=vim
 export LS_COLORS="di=01;36" # Display directory in cyan with ls
+export DISPLAY="localhost:0.0" # Display for Xauth11/Xming
 
 # Color support for less
 export LESS_TERMCAP_mb=$'\E[01;31m'       # begin blinking
