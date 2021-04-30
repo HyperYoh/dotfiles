@@ -79,13 +79,36 @@ term_size() # @https://github.com/epita/term_size
 {
     if [ "$1" = "-h" ]; then
         echo "Usage: $0 [size [font]]"
-        exit 0
+        return 0
     fi
 
     SIZE=${1:-16}
     FONT=${2:-DejaVuSansMono}
 
     printf '\33]50;%s%d\007' "xft:${FONT}:pixelsize=" "${SIZE}"
+}
+
+download_config_file()
+{
+    echo "Start!"
+
+    if wgetdiff https://raw.githubusercontent.com/HyperYoh/dotfiles/main/bash/.bashrc ~/.bashrc; then
+        echo ".bashrc found"
+    else
+        echo ".bashrc not found"
+        curl https://raw.githubusercontent.com/HyperYoh/dotfiles/main/bash/.bashrc $> ~/.bashrc 2> /dev/null
+        echo ".bashrc downloaded"
+    fi
+
+    if wgetdiff https://raw.githubusercontent.com/HyperYoh/dotfiles/main/vim/.vimrc ~/.vimrc; then
+        echo ".vimrc found"
+    else
+        echo ".vimrc not found"
+        echo ".vimrc downloaded"
+        curl https://raw.githubusercontent.com/HyperYoh/dotfiles/main/vim/.vimrc &> ~/.vimrc 2> /dev/null
+    fi
+
+    echo "Over."
 }
 
 # Terminal
