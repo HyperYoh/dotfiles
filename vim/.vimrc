@@ -79,11 +79,13 @@ set shiftwidth=4
 set list listchars=tab:»·,trail:·
 set backspace=indent,eol,start
 
-set hlsearch
 set number
 set relativenumber
 set colorcolumn=80
 set scrolloff=12
+set hlsearch
+set ignorecase " Ignore case on search
+set smartcase " Ignore case unless there is an uppercase letter in the pattern
 
 set showmatch
 set showmode
