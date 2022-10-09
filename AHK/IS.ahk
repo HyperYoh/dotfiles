@@ -6,9 +6,9 @@
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
-Menu, Tray, Add
-Menu, Tray, Add, Reload, ReloadFun
-Menu, Tray, Add, ForeGroundCurrent
+Menu Tray, Add
+Menu Tray, Add, Reload, ReloadFun
+Menu Tray, Add, ForeGroundCurrent
 
 ReloadFun()
 {
@@ -23,7 +23,7 @@ ForeGroundCurrent()
             id := windows%A_Index%
             WinGetTitle wt, ahk_id %id%
             if wt = iStripper
-                    WinSet ExStyle, -0x80020, ahk_id %id%
+                 WinSet ExStyle, -0x80020, ahk_id %id%
     }
 }
 
@@ -32,13 +32,23 @@ WinWait iStripper
 WinGet windows, List
 Loop %windows%
 {
-	id := windows%A_Index%
-	WinGetTitle wt, ahk_id %id%
-	if wt = iStripper
-		WinSet ExStyle, +0x80020, ahk_id %id%
+    id := windows%A_Index%
+    WinGetTitle wt, ahk_id %id%
+    if wt = iStripper
+        WinSet ExStyle, +0x80020, ahk_id %id%
 }
 
-WinWaitClose iStripper
+; if unique model
+; WinWaitClose iStripper
+
+; if multiple model
+Winget n, Count, iStripper
+Winget s, Count, iStripper
+While s = n
+{
+    Sleep 200
+    Winget s, Count, iStripper
+}
 
 reload
 
