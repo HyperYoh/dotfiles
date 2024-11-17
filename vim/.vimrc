@@ -5,44 +5,44 @@
 " ~/.vimrc
 "
 " Description:
-"   This is the .vimrc file
+"     This is the .vimrc file
 "
 " Maintener:
-"   HyperYoh
+"     HyperYoh
 "
 " Complete Version:
-"   Complete Configuration
-"   Including All Plugins
-"   Are Other Place In Repo
+"     Complete Configuration
+"     Including All Plugins
+"     Are Other Place In Repo
 "
 " Acknowledgements:
-"   WIP
+"     WIP
 "
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " Plugins
 """"""""""""""""""""""""""""""""""""""""""""""""""
 
 " set the runtime path to include Vundle and initialize
-"set rtp+=~/.vim/bundle/Vundle.vim
-"call vundle#begin()
+" set rtp+=~/.vim/bundle/Vundle.vim
+" call vundle#begin()
 " alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
+" call vundle#begin('~/some/path/here')
 
 " let Vundle manage Vundle, required
-"Plugin 'VundleVim/Vundle.vim'
+" Plugin 'VundleVim/Vundle.vim'
 
 " https://github.com/tpope/vim-sensible
-"Plugin 'tpope/vim-sensible'
+" Plugin 'tpope/vim-sensible'
 
 " https://github.com/takac/vim-hardtime
 " Bundle 'takac/vim-hardtime'
-"Plugin 'takac/vim-hardtime'
+" Plugin 'takac/vim-hardtime'
 
 " All of your Plugins must be added before the following line
-"call vundle#end()            " required
+" call vundle#end()            " required
 " filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
-"filetype plugin on
+" filetype plugin on
 
 " runtime! plugin/sensible.vim
 " runtime! plugin/hardtime.vim
@@ -115,12 +115,20 @@ nnoremap S Xi
 " clipboard with Ctrl+c (Linux Only)
 map <C-c> :w !xsel -i -b<CR><CR>
 
-" Clang-Format (May fix path)
-map <C-K> :pyf ~/afs/Tools/clang_format/clang-format.py<cr>
-imap <C-K> <c-o>:pyf ~/afs/Tools/clang_format/clang-format.py<cr>
-
 " toggle highlight search
 noremap <F7> :set hlsearch!<cr>:set hlsearch?<cr>
+
+" Disable U (Line Undo)
+nnoremap U <nop>
+
+" Disable Ctrl+k (Mainly For VSCode)
+noremap <C-k> <nop>
+
+"""" Deprecated / School
+"" Clang-Format (May fix path)
+" map <C-K> :pyf ~/afs/Tools/clang_format/clang-format.py<cr>
+" imap <C-K> <c-o>:pyf ~/afs/Tools/clang_format/clang-format.py<cr>
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " abbreviate
@@ -195,7 +203,7 @@ endfunc
 nnoremap <C-P> :call MoveToPrevTab()<CR>
 nnoremap <C-N> :call MoveToNextTab()<CR>
 
-" DON'T LEAVE THE FUCKING HOME RAW!
+" DON'T LEAVE THE HOME RAW!
 fun! HJKL()
     nnoremap <Left> :echo "No left for you!"<CR>
     vnoremap <Left> :<C-u>echo "No left for you!"<CR>
@@ -214,34 +222,14 @@ fun! HJKL()
     inoremap <Down> <C-o>:echo "No down for you!"<CR>
 endfunction
 
-" Home Raw? Kezako?
-fun! LKJH()
-    nunmap <Left>
-    vunmap <Left>
-    iunmap <Left>
-
-    nunmap <Right>
-    vunmap <Right>
-    iunmap <Right>
-
-    nunmap <Up>
-    vunmap <Up>
-    iunmap <Up>
-
-    nunmap <Down>
-    vunmap <Down>
-    iunmap <Down>
-endfunction
-
 command! HJKL call HJKL()
-command! LKJH call LKJH()
 
 " A Save Function
-"function! Formatonsave()
-"  let l:formatdiff = 1
-"  pyf ~/llvm/tools/clang/tools/clang-format/clang-format.py
-"endfunction
-"autocmd BufWritePre *.h,*.cc,*.cpp call Formatonsave()
+" function! Formatonsave()
+"     let l:formatdiff = 1
+"     pyf ~/llvm/tools/clang/tools/clang-format/clang-format.py
+" endfunction
+" autocmd BufWritePre *.h,*.cc,*.cpp call Formatonsave()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " Over.
