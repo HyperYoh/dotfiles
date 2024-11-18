@@ -78,6 +78,7 @@ set shiftwidth=4
 
 set list listchars=tab:»·,trail:·
 set backspace=indent,eol,start
+set matchpairs+=<:> " % jump on <>
 
 set number
 set relativenumber
