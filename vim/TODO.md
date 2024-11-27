@@ -1,4 +1,5 @@
 # TODO
 
-[ ] Enhance Colors  
+[ ] Enhance Colors
+[ ] Double Line Number
 
